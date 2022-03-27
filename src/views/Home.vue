@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="home flex flex-col">
+    <img alt="Vue logo" src="../assets/logo.png" class="self-center" />
+    <HelloWorld msg="Project PPL with Vue and Tailwindcss" />
   </div>
 </template>
 
