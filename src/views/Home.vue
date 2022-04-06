@@ -1,18 +1,14 @@
 <template>
-  <div class="home flex flex-col">
-    <img alt="Vue logo" src="../assets/logo.png" class="self-center" />
-    <HelloWorld msg="Project PPL with Vue and Tailwindcss" />
-  </div>
+  <div id="home" class="font-poppins flex justify-center py-12 bg-base-200">
+        <h1 class="text-2xl font-bold">Ini halaman Home</h1>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld,
   },
 };
 </script>

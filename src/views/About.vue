@@ -1,5 +1,14 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <div id="about" class="font-poppins flex justify-center py-12 bg-base-200">
+        <h1 class="text-2xl font-bold">Ini Halaman About</h1>
+    </div>
 </template>
+
+<script>
+export default {
+  name: 'About',
+  components: {
+    
+  }
+}
+</script>

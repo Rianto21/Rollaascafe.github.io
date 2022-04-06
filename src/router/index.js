@@ -8,6 +8,13 @@ const routes = [
     component: Home,
   },
   {
+    path: "/product",
+    name: "Product",
+  
+    component: () =>
+      import("../views/Product.vue"),
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting
@@ -15,6 +22,27 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+  
+    component: () =>
+      import("../views/Contact.vue"),
+  },
+  {
+    path: "/login",
+    name: "Login",
+  
+    component: () =>
+      import("../views/Login.vue"),
+  },
+  {
+    path: "/register",
+    name: "Registration",
+  
+    component: () =>
+      import("../views/Registration.vue"),
   },
 ];
 
