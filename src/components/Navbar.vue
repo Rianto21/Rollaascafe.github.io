@@ -30,11 +30,11 @@
         <hr class="line mt-2 bg-green-500 h-[2px] hidden" />
       </li>
       <li class="menu">
-        <router-link to="/about">About</router-link>
+        <router-link to="/seatReservation">Seat Reservation</router-link>
         <hr class="line mt-2 bg-green-500 h-[2px] hidden" />
       </li>
       <li class="menu">
-        <router-link to="/contact">Contact</router-link>
+        <router-link to="/about">About</router-link>
         <hr class="line mt-2 bg-green-500 h-[2px] hidden" />
       </li>
       <li class="flex gap-4 mt-4">
