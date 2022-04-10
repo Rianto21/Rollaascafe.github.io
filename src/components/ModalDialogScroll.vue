@@ -13,7 +13,7 @@
         class="px-10 py-5 shadow-md text-gray-700 font-semibold bg-white flex items-center justify-between"
       >
         <span>TERMS AND CONDITION</span>
-        <i class="bi bi-x text-2xl font-bold" @click="modal = false"></i>
+        <i class="bi bi-x text-2xl font-bold" @click="modals = false"></i>
       </div>
       <div
         class="text-gray-500 tex-sm px-10 pt-5 pb-24 text-justify flex flex-col gap-3 h-full overflow-y-scroll"
@@ -81,6 +81,11 @@
 export default {
   name: "ModalDialogScroll",
   components: {},
-  props: ['modal']
+  props: ['modal'],
+  data() {
+    return {
+      modals: modal,
+    }
+  }
 };
 </script>

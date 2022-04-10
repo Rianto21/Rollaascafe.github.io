@@ -1,18 +1,19 @@
 <template>
-  <Navbar />
-  <div id="home" class="font-poppins flex justify-center py-12 bg-base-200">
-        <h1 class="text-2xl font-bold">Ini halaman Home</h1>
-    </div>
+  <Navbar class="bg-gradient-to-r from-[#9E7B4B] to-[#CDA976] text-white"/>
+  <Hero />
+  <div class="bg-white w-full h-60">sasdas</div>
 </template>
 
 <script>
 
 import Navbar from '@/components/Navbar.vue';
+import Hero from '@/components/Hero.vue';
 
 export default {
   name: "Home",
   components: {
     Navbar,
+    Hero,
   },
 };
 </script>
