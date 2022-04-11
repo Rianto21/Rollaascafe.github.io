@@ -2,7 +2,7 @@
     <div id="login" class="font-poppins flex justify-center py-12 bg-base-200">
         <div class="md:w-1/3 px-10">
             <div class="flex flex-col items-center mb-8">
-                <img src="../assets/logo.png" alt="Logo Rollaas Cafe" class="
+                <img src="../assets/logo-rollaas-cafe.png" alt="Logo Rollaas Cafe" class="
                 w-20">
                 <h1 class="text-3xl font-bold">Login with email</h1>
             </div>
