@@ -1,0 +1,25 @@
+{
+  "name": "rollaascafe.github.io",
+  "version": "1.0.0",
+  "description": "Kelompok Pemrograman Perangkat Lunak D Kelas PPL C <br>\r Project Manager: Sean Anthony <br>\r System Designer: Mikli Oktarianto <br>\r System Programmer: Kukuh Satrio Bimantoro <br>\r System Analyst: Dini Aulia Hidayati <br>\r System Tester: Ahmad Zuhair Rizqi <br>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rianto21/Rollaascafe.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rianto21/Rollaascafe.github.io/issues"
+  },
+  "homepage": "https://github.com/Rianto21/Rollaascafe.github.io#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongodb": "^4.5.0",
+    "nodemon": "^2.0.15"
+  }
+}
