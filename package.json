@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Kelompok Pemrograman Perangkat Lunak D Kelas PPL C <br>\r Project Manager: Sean Anthony <br>\r System Designer: Mikli Oktarianto <br>\r System Programmer: Kukuh Satrio Bimantoro <br>\r System Analyst: Dini Aulia Hidayati <br>\r System Tester: Ahmad Zuhair Rizqi <br>",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "nodemon ./app/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
