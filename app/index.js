@@ -19,6 +19,6 @@ app.get('/', (req, res) => {
 })
 
 
-mongoose.connect('mongodb+srv://Oryto21:M1475963@cluster0.ar1x3.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log('Connect to DB!'))
+mongoose.connect('mongodb+srv://Oryto21:M1475963@cluster0.ar1x3.mongodb.net/rollaascafe', { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log('Connect to DB!'))
 
 app.listen(port, () => console.log(`Server are running from http://localhost:${port}`))
