@@ -1,19 +1,28 @@
-import UserSchema from '../models/users'
+import { productSchema } from '../models/products.js'
 
-export const getProducts = (req, res) => {
-  res.send(products)
+export const getProducts = async (req, res) => {
+  const productpost = await productSchema.find()
+  res.send(productpost)
 };
 
 export const createProduct = (req, res) => {
-  const user = new UserSchema({
-    
+  const user = new productSchema({
+    nama_barang: req.body.nama_barang,
+    deskripsi: req.body.deskripsi,
+    stok: req.body.stok,
+    harga: req.body.harga,
+    gambar: req.body.gambar,
+    rating_product: req.body.rating_product
   });
 
-  users.push(user);
+  userpost.save()
+  .then(data => {
+    res.json(data);
+  })
+  .catch(err => {
+    res.json({ message: err});
+  })
 
-  res.send(`user with name ${user.name} added to the database!`)
-
-  
 };
 
 export const getProduct = (req, res) => {

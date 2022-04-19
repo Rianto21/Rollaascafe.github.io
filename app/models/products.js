@@ -1,11 +1,6 @@
-import { String, ObjectId, Int32, Object } from 'mongodb';
 import mongoose from 'mongoose';
 
 const ProductSchema = mongoose.Schema({
-  _id: {
-    type: ObjectId,
-    required: true
-  },
   nama_barang: {
     type: String,
     required: true
@@ -15,11 +10,11 @@ const ProductSchema = mongoose.Schema({
     required: true
   },
   stok: {
-    type: Int32,
+    type: Number,
     required: true
   },
   harga: {
-    type: Int32,
+    type: Number,
     required: true
   },
   gambar: {
@@ -28,6 +23,13 @@ const ProductSchema = mongoose.Schema({
   },
   rating_product: {
     type: Object,
+    default: {
+      "rata-rata": 0,
+      "daftar-rating": []
+    },
     required: true
   },
-})
+},
+{collection: 'products'})
+
+export const productSchema = mongoose.model('ProductSchema', ProductSchema)
