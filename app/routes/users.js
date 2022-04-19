@@ -9,10 +9,10 @@ router.get('/', getUsers)
 
 router.post('/', createUser)
 
-router.get('/:name', getUser)
+router.get('/:id', getUser)
 
-router.delete('/:name', deleteUser)
+router.delete('/:id', deleteUser)
 
-router.patch('/:name', updateUser)
+router.patch('/:id', updateUser)
 
 export default router
