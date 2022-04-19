@@ -1,5 +1,4 @@
 import express from 'express';
-import { appendFile } from 'fs';
 
 import {getProducts, createProduct, getProduct, updateProduct, deleteProduct} from '../controllers/products.js'
 

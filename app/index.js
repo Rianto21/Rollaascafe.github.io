@@ -7,6 +7,8 @@ import productsRoute from './routes/products.js'
 const app = express();
 let port = process.env.PORT || 8000;
 
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
 app.use(bodyParser.json());
 
