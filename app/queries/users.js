@@ -14,12 +14,15 @@ client.connect((err, client) => {
   db.collection('users').insertOne({
     username: "Mike",
     password: "0021",
+    email: "donny@gmail.com",
     nama_lengkap: "Mikli Oktarianto",
     description: "Faster Than Light",
     contact: 089566667777,
     user_role: "Super Saiyan",
+    keranjang_belanja: [],
     daftar_pemesanan: [],
     daftar_pemesanan_meja: [],
+    user_product_rating: [],
     created_at: Date.now(),
     last_updated: Date.now()
   }, (err, result) => {
