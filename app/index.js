@@ -1,8 +1,8 @@
 import bodyParser from "body-parser";
 import express from "express";
 import mongoose from 'mongoose'
-
 import usersRoute from './routes/users.js';
+import productsRoute from './routes/products.js'
 
 const app = express();
 let port = process.env.PORT || 8000;
@@ -11,6 +11,8 @@ let port = process.env.PORT || 8000;
 app.use(bodyParser.json());
 
 app.use('/users', usersRoute);
+
+app.use('/products', productsRoute)
 
 app.get('/', (req, res) => {
   console.log("Hello From Indexjs");
