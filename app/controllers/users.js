@@ -14,8 +14,9 @@ let users = [
 ]
 
 export const getUsers = ( req, res) => {
-  const userpost = userSchema.find();
-  res.send(userpost)
+  userSchema.find().then((users) => res.send(users)).catch((error) => {
+    res.status(500).send("Something Went Wrong")
+  })
 };
 
 export const createUser = (req, res) => {
