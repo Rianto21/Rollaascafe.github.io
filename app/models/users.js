@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb';
 import mongoose from 'mongoose';
 
 const UserSchema = mongoose.Schema({

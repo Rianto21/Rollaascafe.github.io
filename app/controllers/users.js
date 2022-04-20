@@ -13,8 +13,8 @@ let users = [
   },
 ]
 
-export const getUsers = async ( req, res) => {
-  const userpost = await userSchema.find()
+export const getUsers = ( req, res) => {
+  const userpost = userSchema.find();
   res.send(userpost)
 };
 
