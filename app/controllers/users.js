@@ -1,19 +1,7 @@
 import { userSchema } from '../models/users.js';
 
-let users = [
-  {
-    name: "john",
-    role: "student",
-    age: "21"
-  },
-  {
-    name: "Dann",
-    role: "teacher",
-    age: "42"
-  },
-]
-
 export const getUsers = ( req, res) => {
+  console.log("You're in get users controller")
   userSchema.find().then((users) => res.send(users)).catch((error) => {
     res.status(500).send("Something Went Wrong")
   })
