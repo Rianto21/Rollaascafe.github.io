@@ -51,12 +51,12 @@ const UserSchema = mongoose.Schema({
   created_at: {
     type: Date,
     required: true,
-    default: Date.now
+    default: new Date()
   },
   last_updates: {
     type: Date,
     required: true,
-    default: Date.now
+    default: new Date()
   }
 }, 
 {collection: 'users'})

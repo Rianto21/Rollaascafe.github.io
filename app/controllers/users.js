@@ -20,9 +20,7 @@ export const createUser = (req, res) => {
     daftar_pemesanan: req.body.daftar_pemesanan,
     daftar_pemesanan_meja: req.body.daftar_pemesanan_meja,
     user_products_rating: req.body.user_products_rating,
-    status_aktif: req.body.status_aktif,
-    created_at: Date.now,
-    last_update: Date.now
+    status_aktif: req.body.status_aktif
   });
 
   // users.push(user);
@@ -62,7 +60,7 @@ export const updateUser = async (req, res) => {
     const { username, password, email, nama_lengkap, description, contact, user_role, keranjang_belanja, 
       daftar_pemesanan, daftar_pemesanan_meja, user_products_rating, status_aktif} = req.body;
     
-    const updateUser = await userSchema.updateOne({
+    const updateUser = await userSchema.updateOne({_id: req.params.id}, { 
       $set: {
         username: username,
         password: password,
@@ -76,7 +74,7 @@ export const updateUser = async (req, res) => {
         daftar_pemesanan_meja: daftar_pemesanan_meja,
         user_products_rating: user_products_rating,
         status_aktif: status_aktif,
-        last_update: Date.now
+        last_updates: new Date()
       }
     });
     res.json(updateUser)
