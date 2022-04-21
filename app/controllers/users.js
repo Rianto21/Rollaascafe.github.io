@@ -21,8 +21,8 @@ export const createUser = (req, res) => {
     daftar_pemesanan_meja: req.body.daftar_pemesanan_meja,
     user_products_rating: req.body.user_products_rating,
     status_aktif: req.body.status_aktif,
-    created_at: req.body.created_at,
-    last_update: req.body.last_update,
+    created_at: Date.now,
+    last_update: Date.now
   });
 
   // users.push(user);
@@ -38,33 +38,95 @@ export const createUser = (req, res) => {
   })
 };
 
-export const getUser = (req, res) => {
-  const { name } = req.params;
-
-  const foundUser = users.find((user) => user.name === name);
-
-  res.send(foundUser)
+export const getUser = async (req, res) => {
+  try {
+    const foundUser = await userSchema.findById(req.params.id)
+    res.json(foundUser)
+  } catch (error) {
+    res.json(error)
+  }
+  
 };
 
-export const deleteUser = (req, res) =>{
-  const { name } = req.params;
-  
-  users = users.filter((user) => user.name !== name);
-  
-  res.send(`data with name ${name} has been deleted`)
+export const deleteUser = async (req, res) =>{
+  try {
+    const deleteUser = await userSchema.deleteOne({_id: req.params.id});
+    res.json(deleteUser)
+  } catch (error) {
+    res.json(error)
+  }
 };
 
-export const updateUser = (req, res) => {
-  const nameParameter = req.params;
-  const { name, role, age } = req.body;
+export const updateUser = async (req, res) => {
+  try {
+    const { username, password, email, nama_lengkap, description, contact, user_role, keranjang_belanja, 
+      daftar_pemesanan, daftar_pemesanan_meja, user_products_rating, status_aktif} = req.body;
+    
+    const updateUser = await userSchema.updateOne({
+      $set: {
+        username: username,
+        password: password,
+        email: email,
+        nama_lengkap: nama_lengkap,
+        description: description,
+        contact: contact,
+        user_role: user_role,
+        keranjang_belanja: keranjang_belanja,
+        daftar_pemesanan: daftar_pemesanan,
+        daftar_pemesanan_meja: daftar_pemesanan_meja,
+        user_products_rating: user_products_rating,
+        status_aktif: status_aktif,
+        last_update: Date.now
+      }
+    });
+    res.json(updateUser)
+  } catch (error) {
+    res.json(error)
+  }
 
-  let user = users.find((user) => user.name === nameParameter.name);
+ 
   // console.log(user.age);
   
-  if(name) user.name = (name);
-  if(role) user.role = (role);
-  if(age) user.age = (age);
+  // if(username) user.username = (username);
+  // if(password) user.password = (password);
+  // if(email) user.email = (email);
+  // if(nama_lengkap) user.nama_lengkap = (nama_lengkap);
+  // if(description) user.description = (description);
+  // if(contact) user.contact = (contact);
+  // if(user_role) user.user_role = (user_role);
+  // if(keranjang_belanja) user.keranjang_belanja = (keranjang_belanja);
+  // if(daftar_pemesanan) user.daftar_pemesanan = (daftar_pemesanan);
+  // if(daftar_pemesanan_meja) user.daftar_pemesanan_meja = (daftar_pemesanan_meja);
+  // if(user_products_rating) user.user_products_rating = (user_products_rating);
+  // if(status_aktif) user.status_aktif = (status_aktif);
+  // user.last_update = Date.now;
 
-  res.send(`data with name ${user.name} has been updated`)
+  // res.send(`data with name ${user._id} has been updated`)
 };
 
+export const getUserOrder = async (req, res) => {
+  try {
+    const userpost = await userSchema.findById(req.params.id);
+    res.json(userpost.daftar_pemesanan)
+  } catch (error) {
+    res.json(error)
+  }
+};
+
+export const getUserCart = async (req, res) => {
+  try {
+    const userpost = await userSchema.findById(req.params.id);
+    res.json(userpost.keranjang_belanja)
+  } catch (error) {
+    res.json(error)
+  }
+};
+
+export const getUserTabOrder = async (req, res) => {
+  try {
+    const userpost = await userSchema.findById(req.params.id);
+    res.json(userpost.daftar_pemesanan_meja)
+  } catch (error) {
+    res.json(error)
+  }
+};

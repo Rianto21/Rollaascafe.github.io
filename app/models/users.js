@@ -17,7 +17,7 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  description: {
+  description: { 
     type: String,
     required: true
   },
@@ -33,13 +33,16 @@ const UserSchema = mongoose.Schema({
     type: [Object],
   },
   daftar_pemesanan: {
-    type: [Object]
+    type: [mongoose.Schema.Types.ObjectId, {ref: 'pemesanan'}],
   },
   daftar_pemesanan_meja: {
-    type: [Object]
+    type: [mongoose.Schema.Types.ObjectId, {ref: 'pemesanan_meja'}]
   },
   user_products_rating: {
-    type: [Object]
+    type: [{
+      product_id: {type: mongoose.Schema.Types.ObjectId, reg: 'productSchema' },
+      rating: Number
+    }]
   },
   status_aktif: {
     type: mongoose.Schema.Types.Boolean,

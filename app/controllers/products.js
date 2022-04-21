@@ -1,3 +1,5 @@
+import { json } from 'express';
+import { ObjectId } from 'mongodb';
 import { productSchema } from '../models/products.js'
 
 export const getProducts = async (req, res) => {
@@ -6,7 +8,7 @@ export const getProducts = async (req, res) => {
 };
 
 export const createProduct = (req, res) => {
-  const user = new productSchema({
+  const productpost = new productSchema({
     nama_barang: req.body.nama_barang,
     deskripsi: req.body.deskripsi,
     stok: req.body.stok,
@@ -15,7 +17,7 @@ export const createProduct = (req, res) => {
     rating_product: req.body.rating_product
   });
 
-  userpost.save()
+  productpost.save()
   .then(data => {
     res.json(data);
   })
@@ -25,32 +27,43 @@ export const createProduct = (req, res) => {
 
 };
 
-export const getProduct = (req, res) => {
-  const { id } = req.params;
+export const getProduct = async (req, res) => {
+  try {
+    const foundProduct = await productSchema.findById(req.params.id);
+    res.json(foundProduct)
+  } catch (error) {
+    res.json(error)
 
-  const foundProduct = products.find((product) => product.id === id);
-
-  res.send(foundProduct)
+  }  
 };
 
-export const deleteProduct = (req, res) =>{
-  const { id } = req.params;
+export const deleteProduct = async (req, res) =>{
+  try {
+    const removedProduct = await productSchema.remove({_id: req.params.id});
+    res.json( removedProduct)
+  } catch (error) {
+    res.json(error)
+  }
   
-  products = products.filter((product) => product.id !== id);
-  
-  res.send(`product with id ${id} has been deleted`)
 };
 
-export const updateProduct = (req, res) => {
-  const idParameter = req.params;
-  const { name, role, age } = req.body;
+export const updateProduct = async (req, res) => {
 
-  let product = products.find((product) => product.id === idParameter.id);
+  try {
+    const { nama_barang, deskripsi, stok, harga, gambar, } = req.body;
+
+    const product = await productSchema.updateOne({_id: req.params.id}, {
+    $set: {nama_barang: nama_barang, deskripsi: deskripsi, stok: stok, harga: harga, gambar: gambar}
+  });
+    res.json(product)
+  } catch (error) {
+    res.json(error)
+  }
   // console.log(user.age);
   
-  if(name) product.name = (name);
-  if(role) product.role = (role);
-  if(age) product.age = (age);
-
-  res.send(`data with name ${product.id} has been updated`)
+  // if(nama_barang) product.nama_barang = (nama_barang);
+  // if(stok) product.stok = (stok);
+  // if(deskripsi) product.deskripsi = (deskripsi);
+  // if(gambar) product.gambar = (gambar);
+  // if(harga) product.harga = (harga);
 };
