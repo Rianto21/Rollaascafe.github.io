@@ -46,6 +46,26 @@ export const getUser = async (req, res) => {
   
 };
 
+export const matchUser = async (req, res) => {
+  try {
+    const matchUser = await userSchema.find({email: req.body.email, password: req.body.password})  
+    res.json(matchUser)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+export const getUserName = async (req, res) => {
+  try {
+    // await userSchema.createIndex({"nama_lengkap": "text"})
+    const foundUser = await userSchema.find({ 'nama_lengkap': { '$regex': req.params.name, '$options': 'i'}})
+    res.json(foundUser)
+    console.log(req.params.name)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
 export const deleteUser = async (req, res) =>{
   try {
     const deleteUser = await userSchema.deleteOne({_id: req.params.id});

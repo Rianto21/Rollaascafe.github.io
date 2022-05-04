@@ -37,6 +37,15 @@ export const getProduct = async (req, res) => {
   }  
 };
 
+export const getProductNama = async (req, res) => {
+  try {
+    const foundProduct = await productSchema.find({"nama_barang": {"$regex": req.params.nama, "$options": 'i'}})
+    res.json(foundProduct)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
 export const deleteProduct = async (req, res) =>{
   try {
     const removedProduct = await productSchema.remove({_id: req.params.id});

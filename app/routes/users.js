@@ -1,7 +1,7 @@
 import express from 'express';
 import { appendFile } from 'fs';
 
-import { getUser, createUser, getUsers, deleteUser, updateUser, getUserOrder, getUserCart, getUserTabOrder } from '../controllers/users.js'
+import { getUser, matchUser, createUser, getUsers, deleteUser, updateUser, getUserOrder, getUserCart, getUserTabOrder, getUserName } from '../controllers/users.js'
 
 const router = express.Router();
 
@@ -9,7 +9,11 @@ router.get('/', getUsers)
 
 router.post('/', createUser)
 
+router.post('/validation', matchUser)
+
 router.get('/:id', getUser)
+
+router.get('/name/:name', getUserName)
 
 router.delete('/:id', deleteUser)
 
