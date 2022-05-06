@@ -1,7 +1,6 @@
 <template>
-    <Navbar />
-    <div id="seat-reservation" class="font-poppins flex justify-center py-12 bg-base-200">
-        <h1 class="text-2xl font-bold">Ini halaman Seat Reservation</h1>
+    <div id="seat-reservation">
+        <Navbar />
     </div>
 </template>
 
@@ -13,6 +12,12 @@ export default {
     name: 'SeatReservation',
     components: {
         Navbar,
-    }
+    },
+    data() {
+        return {
+            pesan: '',
+            user: {}
+        }
+    },
 }
 </script>

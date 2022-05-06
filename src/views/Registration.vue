@@ -9,20 +9,20 @@
             <form action="" class="flex flex-col gap-4">
                 <div class="flex flex-col bg-white w-full px-4 py-2 gap-2 rounded-md border-[1px] border-gray-500">
                     <label for="nama" class="text-xs text-gray-500">Nama Lengkap</label>
-                    <input type="text" name="nama" placeholder="Masukkan Nama ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal">
+                    <input type="text" name="nama" placeholder="Masukkan Nama ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal" v-model="user.nama_lengkap">
                 </div>
                 <div class="flex flex-col bg-white w-full px-4 py-2 gap-2 rounded-md border-[1px] border-gray-500">
                     <label for="email" class="text-xs text-gray-500">Email</label>
-                    <input type="email" name="email" placeholder="Masukkan Email ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal">
+                    <input type="email" name="email" placeholder="Masukkan Email ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal" v-model="user.email">
                 </div>
                 <div class="flex flex-col bg-white w-full px-4 py-2 gap-2 rounded-md border-[1px] border-gray-500 relative">
                     <label for="password" class="text-xs text-gray-500">Password</label>
-                    <input :type="[pass? 'text' : 'password']" name="password" placeholder="Masukkan Password ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal">
+                    <input :type="[pass? 'text' : 'password']" name="password" placeholder="Masukkan Password ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal" v-model="password">
                     <i class="bi text-gray-700 absolute top-[35%] right-4 text-xl" :class="[pass? 'bi-eye' : 'bi-eye-slash']" @click="pass = !pass"></i>
                 </div>
                 <div class="flex flex-col bg-white w-full px-4 py-2 gap-2 rounded-md border-[1px] border-gray-500 relative">
                     <label for="password" class="text-xs text-gray-500">Konfirmasi Password</label>
-                    <input :type="[confpass? 'text' : 'password']" name="password" placeholder="Masukkan Ulang Password ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal">
+                    <input :type="[confpass? 'text' : 'password']" name="password" placeholder="Masukkan Ulang Password ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal" v-model="confirm">
                     <i class="bi text-gray-700 absolute top-[35%] right-4 text-xl" :class="[confpass? 'bi-eye' : 'bi-eye-slash']" @click="confpass = !confpass"></i>
                 </div>
                 <div class="flex items-center gap-2">
@@ -37,8 +37,8 @@
                 Sudah punya akun ? <span class="font-semibold text-blue-700"><router-link to="/login">Login</router-link></span>
             </div>
         </div>
+        <ModalDialogScroll :modal="terms"/> 
     </div>
-    <ModalDialogScroll :modal="terms"/>
 </template>
 
 <script>
@@ -51,11 +51,24 @@ export default {
         return {
             pass: false,
             confpass: false,
+            password: '',
+            confirm: '',
             terms: false,
+            loading: false,
+            user: {}
         }
     },
     components: {
         ModalDialogScroll,
+    },
+    methods: {
+        registration() {
+            this.user.contact = "",
+            this.user.description = "",
+            this.user.user_role = "useronly",
+            this.user.status_aktif = true,
+            this.loading = true
+        }
     }
 }
 </script>

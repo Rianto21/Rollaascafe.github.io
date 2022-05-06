@@ -15,6 +15,13 @@ const routes = [
       import("../views/Product.vue"),
   },
   {
+    path: "/product/:id",
+    name: "detailProduct",
+  
+    component: () =>
+      import("../views/DetailProduct.vue"),
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting
@@ -31,6 +38,13 @@ const routes = [
       import("../views/SeatReservation.vue"),
   },
   {
+    path: "/keranjang",
+    name: "Keranjang",
+  
+    component: () =>
+      import("../views/Keranjang.vue"),
+  },
+  {
     path: "/login",
     name: "Login",
   
@@ -44,6 +58,41 @@ const routes = [
     component: () =>
       import("../views/Registration.vue"),
   },
+  {
+    path: "/dashboard/karyawan",
+    name: "Karyawan",
+  
+    component: () =>
+      import("../views/Karyawan.vue"),
+  },
+  {
+    path: "/dashboard/tambahKaryawan",
+    name: "tambahKaryawan",
+  
+    component: () =>
+      import("../views/TambahKaryawan.vue"),
+  },
+  {
+    path: "/dashboard/karyawan/:id",
+    name: "editKaryawan",
+  
+    component: () =>
+      import("../views/EditKaryawan.vue"),
+  },
+  {
+    path: "/dashboard/tambahProduct",
+    name: "tambahProduct",
+  
+    component: () =>
+      import("../views/TambahProduct.vue"),
+  },
+  {
+    path: "/dashboard/tambahProduct",
+    name: "tambahProduct",
+  
+    component: () =>
+      import("../views/TambahProduct.vue"),
+  }
 ];
 
 const router = createRouter({
