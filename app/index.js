@@ -1,6 +1,7 @@
 import bodyParser from "body-parser";
 import express from "express";
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+import cors from 'cors';
 import usersRoute from './routes/users.js';
 import productsRoute from './routes/products.js'
 
@@ -9,6 +10,12 @@ let port = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use(
+  cors({
+    origin: "*",
+    credentials: true
+  })
+)
 
 app.use(bodyParser.json());
 

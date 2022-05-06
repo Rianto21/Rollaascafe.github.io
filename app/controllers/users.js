@@ -1,3 +1,4 @@
+import { productSchema } from '../models/products.js';
 import { userSchema } from '../models/users.js';
 
 export const getUsers = ( req, res) => {
@@ -139,6 +140,34 @@ export const getUserCart = async (req, res) => {
     res.json(error)
   }
 };
+
+export const addUserCart = async (req, res) => {
+  try {
+    const totalharga = await productSchema.findById(req.body.id_barang)
+    const addusercart = await userSchema.updateOne({_id: req.params.id}, {
+      $push: {
+        keranjang_belanja: [{
+          id_barang: req.body.id_barang,
+          jumlah_barang: req.body.jumlah_barang,
+          total_harga: totalharga.harga * req.body.jumlah_barang
+        }]
+      }
+      
+    })
+    console.log(totalharga.harga * req.body.jumlah_barang)
+    res.json(addusercart)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+export const updateUserCart = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    res.json(error)
+  }
+}
 
 export const getUserTabOrder = async (req, res) => {
   try {
