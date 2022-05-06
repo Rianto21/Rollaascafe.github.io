@@ -146,11 +146,11 @@ export const addUserCart = async (req, res) => {
     const totalharga = await productSchema.findById(req.body.id_barang)
     const addusercart = await userSchema.updateOne({_id: req.params.id}, {
       $push: {
-        keranjang_belanja: [{
+        keranjang_belanja: {
           id_barang: req.body.id_barang,
           jumlah_barang: req.body.jumlah_barang,
           total_harga: totalharga.harga * req.body.jumlah_barang
-        }]
+        }
       }
       
     })
