@@ -152,7 +152,6 @@ export const addUserCart = async (req, res) => {
           total_harga: totalharga.harga * req.body.jumlah_barang
         }
       }
-      
     })
     console.log(totalharga.harga * req.body.jumlah_barang)
     res.json(addusercart)

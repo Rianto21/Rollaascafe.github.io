@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import usersRoute from './routes/users.js';
 import productsRoute from './routes/products.js'
+import tablesRoute from './routes/tables.js'
 
 const app = express();
 let port = process.env.PORT || 8000;
@@ -21,7 +22,9 @@ app.use(bodyParser.json());
 
 app.use('/users', usersRoute);
 
-app.use('/products', productsRoute)
+app.use('/products', productsRoute);
+
+app.use('/tables', tablesRoute);
 
 app.get('/', (req, res) => {
   console.log("Hello From Indexjs");
