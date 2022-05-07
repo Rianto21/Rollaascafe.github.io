@@ -6,10 +6,14 @@
                 w-20">
                 <h1 class="text-3xl font-bold">Creat Account</h1>
             </div>
-            <form action="" class="flex flex-col gap-4">
+            <form action="" class="flex flex-col gap-4" @submit.prevent>
                 <div class="flex flex-col bg-white w-full px-4 py-2 gap-2 rounded-md border-[1px] border-gray-500">
                     <label for="nama" class="text-xs text-gray-500">Nama Lengkap</label>
                     <input type="text" name="nama" placeholder="Masukkan Nama ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal" v-model="user.nama_lengkap">
+                </div>
+                <div class="flex flex-col bg-white w-full px-4 py-2 gap-2 rounded-md border-[1px] border-gray-500">
+                    <label for="username" class="text-xs text-gray-500">Username</label>
+                    <input type="text" name="username" placeholder="Masukkan Username ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal" v-model="user.username">
                 </div>
                 <div class="flex flex-col bg-white w-full px-4 py-2 gap-2 rounded-md border-[1px] border-gray-500">
                     <label for="email" class="text-xs text-gray-500">Email</label>
@@ -17,12 +21,12 @@
                 </div>
                 <div class="flex flex-col bg-white w-full px-4 py-2 gap-2 rounded-md border-[1px] border-gray-500 relative">
                     <label for="password" class="text-xs text-gray-500">Password</label>
-                    <input :type="[pass? 'text' : 'password']" name="password" placeholder="Masukkan Password ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal" v-model="password">
+                    <input :type="[pass? 'text' : 'password']" name="password" placeholder="Masukkan Password ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal" v-model="user.password">
                     <i class="bi text-gray-700 absolute top-[35%] right-4 text-xl" :class="[pass? 'bi-eye' : 'bi-eye-slash']" @click="pass = !pass"></i>
                 </div>
                 <div class="flex flex-col bg-white w-full px-4 py-2 gap-2 rounded-md border-[1px] border-gray-500 relative">
-                    <label for="password" class="text-xs text-gray-500">Konfirmasi Password</label>
-                    <input :type="[confpass? 'text' : 'password']" name="password" placeholder="Masukkan Ulang Password ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal" v-model="confirm">
+                    <label for="confpassword" class="text-xs text-gray-500">Konfirmasi Password</label>
+                    <input :type="[confpass? 'text' : 'password']" name="confpassword" placeholder="Masukkan Ulang Password ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal" v-model="confirm">
                     <i class="bi text-gray-700 absolute top-[35%] right-4 text-xl" :class="[confpass? 'bi-eye' : 'bi-eye-slash']" @click="confpass = !confpass"></i>
                 </div>
                 <div class="flex items-center gap-2">
@@ -30,7 +34,7 @@
                     <label for="agree" class="text-sm">Saya setuju dengan <span class="text-blue-700 cursor-pointer" @click="terms = true">syarat dan ketentuan</span> Rollaas Cafe.</label>
                 </div>
                 <div>
-                    <button type="submit" class="bg-green-700 w-full py-3 font-semibold text-white rounded-md">Sign Up</button>
+                    <button type="submit" class="bg-green-700 w-full py-3 font-semibold text-white rounded-md" @click="registration">Sign Up</button>
                 </div>
             </form>
             <div class="text-sm text-center mt-8">
@@ -38,12 +42,21 @@
             </div>
         </div>
         <ModalDialogScroll :modal="terms"/> 
+        <div v-if="oke" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"></div>
+        <router-link to="/login" v-if="oke" class="fixed inset-0 flex justify-center items-center w-full h-full" @click="oke = false">
+            <div class="w-[420px] h-[420px] bg-white shadow-lg rounded-xl p-8 flex flex-col items-center gap-6 justify-center">
+                <i class="bi bi-check-circle text-9xl text-green-700"></i>
+                <h3 class="text-2xl font-semibold text-center">Registrasi berhasil</h3>
+            </div>
+        </router-link>
+        <div v-if="loading" class="fixed inset-0 bg-white overflow-y-auto h-full w-full flex justify-center items-center text-2xl font-bold">Loading...</div>
     </div>
 </template>
 
 <script>
 
 import ModalDialogScroll from '@/components/ModalDialogScroll.vue';
+import axios from 'axios';
 
 export default {
     name: 'Registration',
@@ -55,6 +68,7 @@ export default {
             confirm: '',
             terms: false,
             loading: false,
+            oke: false,
             user: {}
         }
     },
@@ -63,11 +77,15 @@ export default {
     },
     methods: {
         registration() {
-            this.user.contact = "",
-            this.user.description = "",
+            this.user.contact = " ",
+            this.user.description = " ",
             this.user.user_role = "useronly",
             this.user.status_aktif = true,
             this.loading = true
+            console.log(this.user)
+            axios.post('https://rollaascafeapinodejs.herokuapp.com/users', this.user)
+            .then(() => this.loading =  false, this.oke = true)
+            .catch((error) => console.log("Error : ", error))
         }
     }
 }

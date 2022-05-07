@@ -66,7 +66,7 @@
     </div>
     <div class="flex gap-4 text-2xl" v-if="session">
         <router-link to="/keranjang"><i class="bi bi-cart"></i></router-link>
-        <i class="bi bi-person-circle"></i>
+        <router-link :to="'/profile/'+session"><i class="bi bi-person-circle"></i></router-link>
     </div>
     <!-- <div class="absolute w-32 h-48 bg-white right-0"></div> -->
   </div>
@@ -79,7 +79,8 @@ export default {
     return {
       isOpen: false,
       session: sessionStorage.getItem("login"),
-      user: sessionStorage.getItem("user")
+      user: sessionStorage.getItem("user"),
+      nama: sessionStorage.getItem("nama")
     };
   },
 };

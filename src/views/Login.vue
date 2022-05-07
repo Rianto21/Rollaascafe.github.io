@@ -57,6 +57,7 @@ export default {
             if(data.length > 0) {
                 sessionStorage.setItem("login", data[0]._id)
                 sessionStorage.setItem("user", data[0].user_role)
+                sessionStorage.setItem("nama", data[0].nama_lengkap)
                 this.$router.push({ name: 'Home' })
             } else {
                 this.ada = true

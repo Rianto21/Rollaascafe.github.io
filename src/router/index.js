@@ -45,6 +45,13 @@ const routes = [
       import("../views/Keranjang.vue"),
   },
   {
+    path: "/profile/:id",
+    name: "Profile",
+  
+    component: () =>
+      import("../views/Profile.vue"),
+  },
+  {
     path: "/login",
     name: "Login",
   
@@ -94,11 +101,18 @@ const routes = [
       import("../views/ProductAdmin.vue"),
   },
   {
-    path: "/dashboard/tambahProduct",
+    path: "/dashboard/product/tambah",
     name: "tambahProduct",
   
     component: () =>
       import("../views/TambahProduct.vue"),
+  },
+  {
+    path: "/dashboard/product/edit/:id",
+    name: "editProduct",
+  
+    component: () =>
+      import("../views/EditProduct.vue"),
   }
 ];
 

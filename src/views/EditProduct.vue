@@ -1,7 +1,7 @@
 <template>
-    <div id="tambah-karyawan" class="font-poppins flex justify-center py-12 bg-base-200 bg-gray-100 relative">
+    <div id="edit-produt" class="font-poppins flex justify-center py-12 bg-base-200 bg-gray-100 relative">
         <div class="md:w-1/3 px-10 py-10 bg-white shadow-lg rounded-xl">
-            <h1 class="text-2xl font-semibold text-green-700 text-center mb-6">Tambah Product</h1>
+            <h1 class="text-2xl font-semibold text-green-700 text-center mb-6">Edit Product</h1>
             <form class="flex flex-col gap-4" @submit.prevent>
                 <label for="gambar" class="hidden flex-col items-center bg-white w-full py-10 gap-2 rounded-md border-[1px] border-gray-500 text-green-700 font-medium">
                     <i class="bi bi-upload text-6xl"></i>
@@ -29,14 +29,14 @@
                     <textarea name="description" rows="5" placeholder="Masukkan Deskripsi ..." class="w-full outline-none text-gray-700 font-medium placeholder-shown:font-normal" v-model="product.deskripsi"></textarea>
                 </div>
                 <div>
-                    <button type="submit" class="bg-green-700 w-full py-3 font-semibold text-white rounded-md" @click="tambahproduct">Tambah Product</button>
+                    <button type="submit" class="bg-green-700 w-full py-3 font-semibold text-white rounded-md" @click="tambahproduct">Simpan</button>
                 </div>
             </form>
             <div v-if="oke" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"></div>
             <router-link to="/dashboard/product" v-if="oke" class="fixed inset-0 flex justify-center items-center w-full h-full" @click="oke = false">
                 <div class="w-[420px] h-[420px] bg-white shadow-lg rounded-xl p-8 flex flex-col items-center gap-6 justify-center">
                     <i class="bi bi-check-circle text-9xl text-green-700"></i>
-                    <h3 class="text-2xl font-semibold text-center">Data Berhasil Ditambahkan</h3>
+                    <h3 class="text-2xl font-semibold text-center">Data Berhasil Diupdate</h3>
                 </div>
             </router-link>
             <div v-if="loading" class="fixed inset-0 bg-white overflow-y-auto h-full w-full flex justify-center items-center text-2xl font-bold">Loading...</div>
@@ -68,7 +68,15 @@ export default {
             axios.post('https://rollaascafeapinodejs.herokuapp.com/products', this.product)
             .then(() => this.loading =  false, this.oke = true)
             .catch((error) => console.log("Error : ", error))
+        },
+        setProduct(data) {
+            this.product = data
         }
+    },
+    mounted() {
+        axios.get('https://rollaascafeapinodejs.herokuapp.com/products/'+this.$route.params.id)
+        .then((response) => this.setProduct(response.data))
+        .catch((error) => console.log("Error : ", error))
     }
 }
 </script>

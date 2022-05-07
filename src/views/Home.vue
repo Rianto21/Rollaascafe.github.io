@@ -5,7 +5,6 @@
     <Hero />
     <div class="flex bg-green-700">
       <div class="w-1/3 bg-gray-100">
-        {{ session }}
         <i class="bi bi-list" @click="remove"></i>
       </div>
     </div>
@@ -54,6 +53,7 @@ export default {
         remove() {
           sessionStorage.removeItem("login")
           sessionStorage.removeItem("user")
+          sessionStorage.removeItem("nama")
           this.session = sessionStorage.getItem("login")
         }
     },
