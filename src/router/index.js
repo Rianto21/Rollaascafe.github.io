@@ -59,6 +59,13 @@ const routes = [
       import("../views/Registration.vue"),
   },
   {
+    path: "/dashboard",
+    name: "Dashboard",
+  
+    component: () =>
+      import("../views/Dashboard.vue"),
+  },
+  {
     path: "/dashboard/karyawan",
     name: "Karyawan",
   
@@ -73,18 +80,18 @@ const routes = [
       import("../views/TambahKaryawan.vue"),
   },
   {
-    path: "/dashboard/karyawan/:id",
+    path: "/dashboard/karyawan/edit/:id",
     name: "editKaryawan",
   
     component: () =>
       import("../views/EditKaryawan.vue"),
   },
   {
-    path: "/dashboard/tambahProduct",
-    name: "tambahProduct",
+    path: "/dashboard/product",
+    name: "ProductAdmin",
   
     component: () =>
-      import("../views/TambahProduct.vue"),
+      import("../views/ProductAdmin.vue"),
   },
   {
     path: "/dashboard/tambahProduct",

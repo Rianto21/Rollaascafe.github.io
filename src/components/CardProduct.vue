@@ -1,5 +1,5 @@
 <template>
-    <div id="card" class="w-44 md:w-64 bg-white h-[266px] md:h-80 rounded-xl shadow-md overflow-hidden">
+    <div id="card" class="w-44 md:w-64 bg-white h-[266px] md:h-80 rounded-xl shadow-md overflow-hidden relative">
         <router-link :to="'/product/'+product._id">
             <div class="w-full h-52 overflow-hidden flex items-center">
                 <img :src="product.gambar" alt="Foto Product">
@@ -10,6 +10,9 @@
                 <h3 class="text:lg md:text-xl font-bold">Rp. {{ product.harga }}</h3>
             </div>
         </router-link>
+        <router-link to="" class="absolute top-2 right-2 text-xl" v-if="edit">
+            <i class="bi bi-pencil-square"></i>
+        </router-link>
     </div>
 </template>
 
@@ -19,6 +22,6 @@ export default {
     components: {
 
     },
-    props: ['product']
+    props: ['product', 'edit']
 }
 </script>

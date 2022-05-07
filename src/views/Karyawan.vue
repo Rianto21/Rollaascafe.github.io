@@ -1,19 +1,6 @@
 <template>
     <div id="dashboard" class="flex font-poppins">
-        <div class="bg-gradient-to-r from-[#9E7B4B] to-[#CDA976] w-64 h-screen fixed">
-            <div>
-                {{ inputuser }}
-            </div>
-            <div>
-                Account
-            </div>
-            <ul>
-                <li><router-link to="/dashboard">Menu 1</router-link></li>
-                <li><router-link to="/dashboard">Menu 2</router-link></li>
-                <li><router-link to="/dashboard">Menu 3</router-link></li>
-                <li><router-link to="/dashboard">Menu 4</router-link></li>
-            </ul>
-        </div>
+        <Sidebar />
         <div class="ml-64 px-24 py-16 w-full gap-8 flex flex-col items-center bg">
             <div class="w-full border-2 border-green-700 rounded-md py-4 px-8 flex gap-4">
                 <i class="bi bi-search"></i>
@@ -34,7 +21,7 @@
                         <td class="flex gap-8 items-center">
                             <div class="bg-green-700 text-white rounded-md py-2 px-4 text-sm">{{ user.status_aktif ? 'Active' : 'Non-Active' }}</div>
                             <div class="text-xl flex gap-3">
-                                <router-link :to="'/dashboard/karyawan/'+user._id"><i class="bi bi-pencil-square text-green-700"></i></router-link>
+                                <router-link :to="'/dashboard/karyawan/edit/'+user._id"><i class="bi bi-pencil-square text-green-700"></i></router-link>
                                 <i class="bi bi-trash text-red-700 cursor-pointer" @click="clickDelete(user._id)"></i>
                             </div>
                         </td>
@@ -64,12 +51,13 @@
 
 <script>
 
+import Sidebar from '@/components/Sidebar.vue'
 import axios from 'axios';
 
 export default {
     name: 'Karyawan',
     components: {
-
+        Sidebar
     },
     data() {
         return {

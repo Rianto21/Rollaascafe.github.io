@@ -35,8 +35,8 @@
         <router-link to="/about">About</router-link>
         <hr class="line mt-2 bg-white h-[2px] hidden" />
       </li>
-      <li class="menu">
-        <router-link to="/about">About</router-link>
+      <li class="menu" v-if="user == 'employees' || user == 'owner'">
+        <router-link to="/dashboard">Dashboard</router-link>
         <hr class="line mt-2 bg-white h-[2px] hidden" />
       </li>
       <li class="flex gap-4 mt-4" v-if="session">
@@ -78,7 +78,8 @@ export default {
   data() {
     return {
       isOpen: false,
-      session: sessionStorage.getItem("login")
+      session: sessionStorage.getItem("login"),
+      user: sessionStorage.getItem("user")
     };
   },
 };

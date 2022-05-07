@@ -24,16 +24,12 @@ export default {
     },
     data() {
         return {
-            products: [],
-            jobs: []
+            products: []
         }
     },
     methods: {
         setProduct(data) {
             this.products = data
-        },
-        setJobs(data) {
-            this.jobs = data
         }
     },
     mounted() {

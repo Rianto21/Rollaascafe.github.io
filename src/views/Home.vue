@@ -53,6 +53,7 @@ export default {
         },
         remove() {
           sessionStorage.removeItem("login")
+          sessionStorage.removeItem("user")
           this.session = sessionStorage.getItem("login")
         }
     },
