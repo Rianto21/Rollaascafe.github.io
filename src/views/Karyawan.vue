@@ -73,7 +73,7 @@ export default {
             if(!/[a-zA-Z]/.test(this.inputuser)) {
                 this.tampilUser()
             } else {
-                axios.get('/users/name/'+this.inputuser)
+                axios.get('https://rollaascafeapinodejs.herokuapp.com/users/name/'+this.inputuser)
                 .then((response) => this.setUsers(response.data))
                 .catch((error) => console.log("Error : ", error))
             }
@@ -87,12 +87,12 @@ export default {
         },
         deleteUser() {
             this.deleted = false;
-            axios.delete('/users/'+this.iddelete)
+            axios.delete('https://rollaascafeapinodejs.herokuapp.com/users/'+this.iddelete)
             .then(() => this.oke = true)
             .catch((error) => console.log("Error : ", error))
         },
         tampilUser() {
-            axios.get('/users')
+            axios.get('https://rollaascafeapinodejs.herokuapp.com/users')
             .then((response) => this.setUsers(response.data))
             .catch((error) => console.log("Error : ", error))
         }

@@ -63,7 +63,7 @@ export default {
             this.user.user_role = "useronly",
             this.user.status_aktif = true,
             this.loading = true,
-            axios.post('/users', this.user)
+            axios.post('https://rollaascafeapinodejs.herokuapp.com/users', this.user)
             .then(() => this.loading =  false, this.oke = true)
             .catch((error) => console.log("Error : ", error))
         }

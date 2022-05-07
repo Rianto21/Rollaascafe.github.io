@@ -64,7 +64,7 @@ export default {
         },
         login() {
             console.log(this.user),
-            axios.post('/users/validation', this.user)
+            axios.post('https://rollaascafeapinodejs.herokuapp.com/users/validation', this.user)
             .then((response) => this.check(response.data))
             .catch((error) => console.log("Error : ", error))
         }

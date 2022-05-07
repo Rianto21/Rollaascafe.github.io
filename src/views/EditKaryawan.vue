@@ -76,13 +76,13 @@ export default {
         },
         updateuser() {
             this.loading = true,
-            axios.patch('/users'+this.$route.params.id, this.user)
+            axios.patch('https://rollaascafeapinodejs.herokuapp.com/users'+this.$route.params.id, this.user)
             .then(() => this.loading =  false, this.oke = true)
             .catch((error) => console.log("Error : ", error))
         }
     },
     mounted() {
-        axios.get('/users/'+this.$route.params.id)
+        axios.get('https://rollaascafeapinodejs.herokuapp.com/users/'+this.$route.params.id)
         .then((response) => this.setUser(response.data))
         .catch((error) => console.log("Error : ", error))
     }
