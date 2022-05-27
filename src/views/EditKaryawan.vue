@@ -41,7 +41,7 @@
                 </div>
             </form>
             <div v-if="oke" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"></div>
-            <router-link to="/dashboard" v-if="oke" class="fixed inset-0 flex justify-center items-center w-full h-full" @click="oke = false">
+            <router-link to="/dashboard/karyawan" v-if="oke" class="fixed inset-0 flex justify-center items-center w-full h-full" @click="oke = false">
                 <div class="w-[420px] h-[420px] bg-white shadow-lg rounded-xl p-8 flex flex-col items-center gap-6 justify-center">
                     <i class="bi bi-check-circle text-9xl text-green-700"></i>
                     <h3 class="text-2xl font-semibold text-center">Data Berhasil Diupdate</h3>
@@ -73,7 +73,7 @@ export default {
         },
         updateuser() {
             this.loading = true,
-            axios.patch('https://rollaascafeapinodejs.herokuapp.com/users'+this.$route.params.id, this.user)
+            axios.patch('https://rollaascafeapinodejs.herokuapp.com/users/'+this.$route.params.id, this.user)
             .then(() => this.loading = false, this.oke = true)
             .catch((error) => console.log("Error : ", error))
         }

@@ -51,7 +51,7 @@
 <script>
 import axios from 'axios'
 export default {
-    name: 'TambahKaryawan',
+    name: 'TambahProduct',
     components: {
     },
     data() {
@@ -65,7 +65,7 @@ export default {
     methods: {
         tambahproduct() {
             this.loading = true,
-            axios.post('https://rollaascafeapinodejs.herokuapp.com/products', this.product)
+            axios.patch('https://rollaascafeapinodejs.herokuapp.com/products/'+this.$route.params.id, this.product)
             .then(() => this.loading =  false, this.oke = true)
             .catch((error) => console.log("Error : ", error))
         },
