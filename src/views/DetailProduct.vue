@@ -23,8 +23,8 @@
                         </div>
                     </div>
                     <div class="sticky bottom-0 w-full py-6 md:py-0 md:static md:w-64">
-                        <router-link to="/keranjang" class="w-full h-16 rounded-lg bg-green-700 text-white text-xl font-medium flex items-center justify-center shadow-md md:text-base" >
-                        <span class="mr-2"><div class="bi bi-cart"></div></span> Add to cart</router-link>
+                        <div class="w-full h-16 rounded-lg bg-green-700 text-white text-xl font-medium flex items-center justify-center shadow-md md:text-base" @click="tambahKeranjang()">
+                        <span class="mr-2"><div class="bi bi-cart"></div></span>Add to cart</div>
                     </div>
                 </div>
             </div>
@@ -44,8 +44,10 @@ export default {
     },
     data() {
         return {
+            session: sessionStorage.getItem("login"),
             product: {},
-            jumlah: 0
+            cart: {},
+            jumlah: 1
         }
     },
     methods: {
@@ -54,12 +56,20 @@ export default {
         },
         setJumlah(data) {
             if(data == 'kurang') {
-                if(this.jumlah > 0) {
+                if(this.jumlah > 1) {
                     this.jumlah--
                 }
             } else {
                 this.jumlah++
             }
+        },
+        tambahKeranjang() {
+            this.cart.id_barang = this.product._id
+            this.cart.jumlah_barang = this.jumlah
+            console.log(this.cart)
+            axios.post('https://rollaascafeapinodejs.herokuapp.com/users/cart/'+this.session, this.cart)
+            .then(() => this.$router.push({ name: 'Keranjang' }))
+            .catch((error) => console.log("Error : ", error))
         }
     },
     mounted() {

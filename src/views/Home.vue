@@ -1,6 +1,5 @@
 <template>
   <div id="home">
-
     <Navbar />
     <Hero />
     <div class="flex bg-green-700">
