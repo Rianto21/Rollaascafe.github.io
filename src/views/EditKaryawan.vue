@@ -62,9 +62,6 @@ export default {
         return {
             pass: false,
             user: {},
-            userupdate: {
-                
-            },
             oke: false,
             loading: false,
         }
@@ -77,7 +74,7 @@ export default {
         updateuser() {
             this.loading = true,
             axios.patch('https://rollaascafeapinodejs.herokuapp.com/users'+this.$route.params.id, this.user)
-            .then(() => this.loading =  false, this.oke = true)
+            .then(() => this.loading = false, this.oke = true)
             .catch((error) => console.log("Error : ", error))
         }
     },

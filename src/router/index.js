@@ -81,14 +81,14 @@ const routes = [
   },
   {
     path: "/dashboard/tambahKaryawan",
-    name: "tambahKaryawan",
+    name: "TambahKaryawan",
   
     component: () =>
       import("../views/TambahKaryawan.vue"),
   },
   {
     path: "/dashboard/karyawan/edit/:id",
-    name: "editKaryawan",
+    name: "EditKaryawan",
   
     component: () =>
       import("../views/EditKaryawan.vue"),
@@ -102,14 +102,14 @@ const routes = [
   },
   {
     path: "/dashboard/product/tambah",
-    name: "tambahProduct",
+    name: "TambahProduct",
   
     component: () =>
       import("../views/TambahProduct.vue"),
   },
   {
     path: "/dashboard/product/edit/:id",
-    name: "editProduct",
+    name: "EditProduct",
   
     component: () =>
       import("../views/EditProduct.vue"),
@@ -120,5 +120,23 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+const isAuthenticated = sessionStorage.getItem("login")
+const user = sessionStorage.getItem("user")
+
+router.beforeEach((to, from, next) => {
+  if (to.name == 'Keranjang' && !isAuthenticated) next({ name: 'Home' })
+  if (to.name == 'Profile' && !isAuthenticated) next({ name: 'Home' })
+  else if (to.name == 'Dashboard' && (!isAuthenticated || user == 'useronly')) next({ name: 'Home' })
+  else if (to.name == 'Karyawan' && (!isAuthenticated || user == 'useronly')) next({ name: 'Home' })
+  else if (to.name == 'TambahKaryawan' && (!isAuthenticated || user == 'useronly')) next({ name: 'Home' })
+  else if (to.name == 'EditKaryawan' && (!isAuthenticated || user == 'useronly')) next({ name: 'Home' })
+  else if (to.name == 'ProductAdmin' && (!isAuthenticated || user == 'useronly')) next({ name: 'Home' })
+  else if (to.name == 'TambahProduct' && (!isAuthenticated || user == 'useronly')) next({ name: 'Home' })
+  else if (to.name == 'EditProduct' && (!isAuthenticated || user == 'useronly')) next({ name: 'Home' })
+  else if (to.name == null) next({ name: 'Home' })
+  else next()
+})
+
 
 export default router;
