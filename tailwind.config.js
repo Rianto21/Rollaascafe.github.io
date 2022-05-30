@@ -7,6 +7,8 @@ module.exports = {
       fontFamily: {
         poppins: ['Poppins'],
         pacifico: ['Pacifico'],
+        nunito: ['Nunito'],
+        nunitosans: ['Nunito Sans']
       }
     },
   },

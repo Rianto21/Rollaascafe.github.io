@@ -1,7 +1,7 @@
 <template>
     <div id="keranjang">
         <Navbar />
-        <div id="keranjang" class="px-32 py-16 w-full gap-8 flex flex-col items-center font-poppins">
+        <div v-if="load" id="keranjang" class="px-32 py-16 w-full gap-8 flex flex-col items-center font-poppins">
             <div class="text-4xl font-bold text-green-700">Isi Keranjang</div>
             <table class="flex flex-col gap-4 w-full">
                 <div v-for="cart in carts" :key="cart.id">
@@ -46,7 +46,8 @@ export default {
         return {
             session: sessionStorage.getItem("login"),
             carts: [],
-            total_harga: 0
+            total_harga: 0,
+            load: false
         }
     },
     methods: {
@@ -67,7 +68,7 @@ export default {
                 .catch((error) => console.log("Error : ", error))
                 this.total_harga += this.carts[i].total_harga
             })
-            console.log(this.carts)
+            this.load = true
         },
     },
     mounted() {

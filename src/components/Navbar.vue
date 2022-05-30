@@ -88,7 +88,7 @@ export default {
 
 <style>
 .menu a.router-link-exact-active {
-  color: #15803d;
+  color: #047857;
   font-weight: 600;
 }
 

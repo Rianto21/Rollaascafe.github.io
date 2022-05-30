@@ -45,6 +45,13 @@ const routes = [
       import("../views/Keranjang.vue"),
   },
   {
+    path: "/checkout",
+    name: "Checkout",
+  
+    component: () =>
+      import("../views/Checkout.vue"),
+  },
+  {
     path: "/profile/:id",
     name: "Profile",
   

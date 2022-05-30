@@ -1,6 +1,7 @@
 <template>
     <div id="checkout">
         <Navbar />
+        <div>Checkout</div>
     </div>
 </template>
 
