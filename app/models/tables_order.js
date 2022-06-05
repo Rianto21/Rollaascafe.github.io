@@ -10,6 +10,6 @@ const OrderTableSchema = mongoose.Schema({
   tanggal_pemesanan: {
     type: new Date()
   }
-})
+}, {collection: 'table_orders'})
 
 export const ordertableSchema = mongoose.model('OrderTableSchema', OrderTableSchema)

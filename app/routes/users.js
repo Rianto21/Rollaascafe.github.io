@@ -32,6 +32,8 @@ router.delete('/cart/:id', updateUserCart)
 
 router.get('/taborder/:id', getUserTabOrder)
 
+// router.get('/alreadybought', )
+
 // router.patch('/urating/:id', pkg.UpdateUserRating)
 
 // router.patch('/cart/:id', pkg.updateUserCart)

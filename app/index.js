@@ -2,9 +2,13 @@ import bodyParser from "body-parser";
 import express from "express";
 import mongoose from 'mongoose';
 import cors from 'cors';
+
+//local module
 import usersRoute from './routes/users.js';
 import productsRoute from './routes/products.js'
 import tablesRoute from './routes/tables.js'
+import prorductOrderRoute from './routes/pemesanan_produk.js'
+import paymentRoute from './routes/pembayaran.js'
 
 const app = express();
 let port = process.env.PORT || 8000;
@@ -25,6 +29,10 @@ app.use('/users', usersRoute);
 app.use('/products', productsRoute);
 
 app.use('/tables', tablesRoute);
+
+app.use('/productorder', prorductOrderRoute)
+
+app.use('/payment', paymentRoute)
 
 app.get('/', (req, res) => {
   console.log("Hello From Indexjs");

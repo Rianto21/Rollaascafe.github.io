@@ -162,7 +162,18 @@ export const addUserCart = async (req, res) => {
 
 export const updateUserCart = async (req, res) => {
   try {
-    
+    const userpost = await userSchema.updateOne({_id: req.params.id}, {
+      $set: {
+        keranjang_belanja: req.body.keranjang_belanja
+      }
+      
+    })
+
+    res.json({
+      status: true,
+      message: "ok",
+      result: userpost
+    })
   } catch (error) {
     res.json(error)
   }
