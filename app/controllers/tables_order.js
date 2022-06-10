@@ -1,4 +1,5 @@
 import { ordertableSchema } from "../models/tables_order";
+import { userSchema } from "../models/users";
 
 export const getTablesOrders = async (req, res) => {
   try {
@@ -23,9 +24,16 @@ export const getTablesOrder = async (req, res) => {
 export const addOrderTable = async (req, res) => {
   try {
     const ordertable = await new ordertableSchema({
+      nama_pemesan: req.body.nama_pemesan,
       jumlah_orang: req.body.jumlah_orang,
       daftar_meja: req.body.daftar_meja,
       tanggal_pemesanan: req.body.tanggal_pemesanan
+    })
+
+    const userOrderTable = await userSchema.updateOne({_id: req.body.user_id}, {
+      $push: {
+        daftar_pemesanan_meja: ordertable._id
+      }
     })
     ordertable.save()
 
@@ -37,10 +45,11 @@ export const addOrderTable = async (req, res) => {
 
 export const updateOrderTable = async (req, res) => {
   try {
-    {jumlah_orang, daftar_meja, tanggal_pemesanan} req.body
+    {nama_pemesan, jumlah_orang, daftar_meja, tanggal_pemesanan} req.body
 
   const updateorderTable = await ordertableSchema.updateOne({_id: req.params.id}, {
     $set: {
+      nama_pemesan: nama_pemesan,
       jumlah_orang: jumlah_orang,
       daftar_meja: daftar_meja,
       tanggal_pemesanan: tanggal_pemesanan

@@ -1,6 +1,9 @@
 import mongoose  from "mongoose";
 
 const OrderTableSchema = mongoose.Schema({
+  nama_pemesan: {
+    type: String
+  },
   jumlah_orang: {
     type: Number
   },
