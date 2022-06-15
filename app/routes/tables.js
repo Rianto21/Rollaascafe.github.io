@@ -9,6 +9,8 @@ router.patch('/order/:id', orderTable)
 
 router.patch('/:id', updateTable)
 
+router.patch('/available/:id', availableTable)
+
 router.post('/', addTable)
 
 export default router

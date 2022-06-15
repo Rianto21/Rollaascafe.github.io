@@ -9,6 +9,7 @@ import productsRoute from './routes/products.js'
 import tablesRoute from './routes/tables.js'
 import prorductOrderRoute from './routes/pemesanan_produk.js'
 import paymentRoute from './routes/pembayaran.js'
+import tablesOrderRoute from './routes/order_tables.js'
 
 const app = express();
 let port = process.env.PORT || 8000;
@@ -33,6 +34,8 @@ app.use('/tables', tablesRoute);
 app.use('/productorder', prorductOrderRoute)
 
 app.use('/payment', paymentRoute)
+
+app.use('/tablesorder', tablesOrderRoute)
 
 app.get('/', (req, res) => {
   console.log("Hello From Indexjs");

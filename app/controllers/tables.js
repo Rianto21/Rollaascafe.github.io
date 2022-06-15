@@ -43,3 +43,18 @@ export const orderTable = async (req, res) => {
     res.json(error)
   }
 }
+
+export const availableTable = async (req, res) => {
+  try {
+    const Tables = await tableSchema.updateOne({_id: req.params.id}, {
+      $set: {statu: true}
+    })
+    res.json({
+      status: true,
+      message: "Table now Available",
+      data: Tables
+  })
+  } catch (error) {
+    res.json(error)
+  }
+}

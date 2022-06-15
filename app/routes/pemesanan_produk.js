@@ -11,10 +11,6 @@ router.post('/', addProductOrders);
 router.post('/checkout', checkoutOrder);
 
 
-// router.patch('/')
-//pembayaran_id, foto
-// router.patch('/payment', )
-
 // router.get('/payment')
 router.get('/accepted', getAcceptedOrders)
 router.get('/not-accepted', getNotAcceptedOrders)
