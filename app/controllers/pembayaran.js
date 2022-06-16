@@ -48,13 +48,15 @@ export const addBuktiPembayaran = async (req, res) => {
 
 export const getPayment = async (req, res) => {
   try {
-    if(req.params.id !== null){
-      const payment = await pembayaranSchema.findOne({_id: req.paramas.id})
-      res.json(payment)
+    let payment;
+    console.log(req.id)
+    if(req.params.id !== undefined){
+      payment = await pembayaranSchema.findOne({_id: req.params.id})
     }else{
-      const payment = await pembayaranSchema.find()
-      res.json(payment)
+      payment = await pembayaranSchema.find()
     }
+    console.log(`test: ${payment}`)
+    res.json(payment)
   } catch (error) {
     res.json(payment)
   }

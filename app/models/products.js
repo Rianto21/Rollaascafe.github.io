@@ -29,6 +29,9 @@ const ProductSchema = mongoose.Schema({
     },
     required: true
   },
+  dijual_online: {
+    type: Boolean
+  }
 },
 {collection: 'products'})
 

@@ -1,6 +1,6 @@
 import express from 'express';
 
-import {getProducts, getProductNama, createProduct, getProduct, deleteProduct, updateProduct} from '../controllers/products.js'
+import {getProducts, getProductNama, createProduct, getProduct, deleteProduct, updateProduct, updateallproduct} from '../controllers/products.js'
 
 const router = express.Router();
 
@@ -15,5 +15,7 @@ router.get('/nama/:nama', getProductNama)
 router.delete('/:id', deleteProduct)
 
 router.patch('/:id', updateProduct)
+
+router.get('/updatecol/:id', updateallproduct)
 
 export default router

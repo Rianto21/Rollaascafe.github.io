@@ -76,3 +76,13 @@ export const updateProduct = async (req, res) => {
   // if(gambar) product.gambar = (gambar);
   // if(harga) product.harga = (harga);
 };
+
+export const updateallproduct = async (req, res) => {
+  try {
+    const product = await productSchema.update({}, {$set: {"dijual_online": true}}, {upsert:false,
+      multi:true})
+    res.json(product)
+  } catch (error) {
+    res.json(error)
+  }
+}
