@@ -187,3 +187,102 @@ export const getUserTabOrder = async (req, res) => {
     res.json(error)
   }
 };
+
+export const getUserRating = async (req, res) => {
+  try {
+    const userrating = await userSchema.findById(req.params.id);
+    res.json(userrating.user_products_rating)
+    // res.json(userrating.)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+export const updateUserRating = async (req, res) => {
+  const {product_id, rating} = req.body
+  const before = await userSchema.findOne({_id: req.params.id}).select('user_products_rating -_id')
+  let ratebefore = before.user_products_rating.filter(function(el) {
+    return el.product_id == product_id
+  })[0].rating
+  // .select({"user_products_rating.product_id": product_id, "_id": req.params.id});
+  // console.log(product_id, rating)
+  // console.log(ratebefore);
+  
+  const userrating = await userSchema.updateOne({_id: req.params.id, "user_products_rating.product_id": product_id}, {
+    $set: {"user_products_rating.$.rating": parseInt(rating)}
+  })
+  if(ratebefore != 0){
+    console.log(ratebefore);
+    // const pullproductrating = await productSchema.updateOne({
+
+    // })
+
+    const unsetting = await productSchema.updateOne({_id: product_id, "rating_product.daftar_rating": parseInt(ratebefore)}, {
+      "$unset": {"rating_product.daftar_rating.$": ""}
+    })
+
+    const pullproductrating = await productSchema.updateOne({_id: product_id, "rating_product.daftar_rating": null}, {
+      $pull: {"rating_product.daftar_rating": null}
+    })
+    // const unsetting = await productSchema.bulkWrite([
+    //   {
+    //     "updateOne": {
+    //       "filter": { _id: product_id, "rating_product.daftar_rating": parseInt(ratebefore)},
+    //       "update": {
+    //         "$unset": {"rating_product.daftar_rating.$": ""}
+    //       }
+    //     },
+    //     "findOneAndUpdate": {
+    //       "filter": {_id: product_id, "rating_product.daftar_rating": null},
+    //       "update": {
+    //         "$pull": {"rating_product.daftar_rating": null}
+    //       }
+    //     }
+    //   }
+    // ])
+
+    // console.log(pullproductrating)
+    const pushproductrating = await productSchema.findOneAndUpdate({_id: product_id}, {
+      $push: {'rating_product.daftar_rating': parseInt(rating)}
+    })
+    let rata_rata = 0;
+    let daftar = pushproductrating.rating_product.daftar_rating
+    let total = 0;
+    daftar.forEach(element => {
+      total += parseInt(element)
+    });
+    rata_rata = (total + parseInt(rating))/(pushproductrating.rating_product.daftar_rating.length + 1)
+    // console.log(pushproductrating);
+    console.log(total, rata_rata, daftar);
+    const update_rata = await productSchema.updateOne({_id: product_id}, {
+      $set: {
+        "rating_product.rata_rata": rata_rata
+      }
+    })
+  }else{
+    const pushproductrating = await productSchema.findOneAndUpdate({_id: product_id}, {
+      $push: {'rating_product.daftar_rating': parseInt(rating)}
+    })
+    let rata_rata = 0;
+    let daftar = pushproductrating.rating_product.daftar_rating
+    let total = 0;
+    daftar.forEach(element => {
+      total += element
+    });
+    rata_rata = total / pushproductrating.rating_product.daftar_rating.length
+    // console.log(pushproductrating);
+    // console.log(total, rata_rata, daftar);
+    const update_rata = await productSchema.updateOne({_id: product_id}, {
+      $set: {
+        "rating_product.rata_rata": rata_rata
+      }
+    })
+  }
+  try {
+
+    res.json(userrating)
+  } catch (error) {
+    console.log("failed")
+    res.json(error)
+  }
+}

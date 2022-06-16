@@ -2,7 +2,7 @@ import express from 'express';
 import { appendFile } from 'fs';
 
 import { getUser, matchUser, createUser, getUsers, deleteUser, updateUser, getUserOrder, getUserCart, 
-  addUserCart, updateUserCart, getUserTabOrder, getUserName } from '../controllers/users.js'
+  addUserCart, updateUserCart, getUserTabOrder, getUserName, getUserRating, updateUserRating } from '../controllers/users.js'
 
 const router = express.Router();
 
@@ -32,9 +32,11 @@ router.delete('/cart/:id', updateUserCart)
 
 router.get('/taborder/:id', getUserTabOrder)
 
-// router.get('/alreadybought', )
+router.get('/urating/:id', getUserRating)
 
-// router.patch('/urating/:id', pkg.UpdateUserRating)
+router.patch('/urating/:id', updateUserRating)
+
+// router.get('/alreadybought', )
 
 // router.patch('/cart/:id', pkg.updateUserCart)
 

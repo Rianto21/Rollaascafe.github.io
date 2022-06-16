@@ -47,7 +47,7 @@ export const orderTable = async (req, res) => {
 export const availableTable = async (req, res) => {
   try {
     const Tables = await tableSchema.updateOne({_id: req.params.id}, {
-      $set: {statu: true}
+      $set: {status: true}
     })
     res.json({
       status: true,

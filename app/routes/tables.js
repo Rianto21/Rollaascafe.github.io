@@ -1,15 +1,15 @@
 import express from "express";
 const router = express.Router();
 
-import { getTables, orderTable, updateTable, addTable } from '../controllers/tables.js'
+import { getTables, orderTable, updateTable, addTable, availableTable } from '../controllers/tables.js'
  
 router.get('/', getTables)
+
+router.get('/available/:id', availableTable)
 
 router.patch('/order/:id', orderTable)
 
 router.patch('/:id', updateTable)
-
-router.patch('/available/:id', availableTable)
 
 router.post('/', addTable)
 

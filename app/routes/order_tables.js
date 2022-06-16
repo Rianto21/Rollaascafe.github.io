@@ -1,6 +1,7 @@
-import { Express } from "express";
+import express  from "express";
+const router = express.Router()
 
-const router = Express.Router()
+import { getTablesOrder, getTablesOrders, addOrderTable, updateOrderTable} from '../controllers/tables_order.js'
 
 router.get('/', getTablesOrders)
 
@@ -10,4 +11,6 @@ router.post('/', addOrderTable)
 
 router.patch('/:id', updateOrderTable)
 
-router.delete('/:id', deleteTableOrder)
+// router.delete('/:id', deleteTableOrder)
+
+export default router

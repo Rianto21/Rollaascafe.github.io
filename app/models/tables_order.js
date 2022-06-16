@@ -8,10 +8,10 @@ const OrderTableSchema = mongoose.Schema({
     type: Number
   },
   daftar_meja: {
-    type:  [mongoose.Schema.Types.ObjectId, {ref: 'table'}]
+    type:  [mongoose.Schema.Types.ObjectId]
   },
   tanggal_pemesanan: {
-    type: new Date()
+    type: Date
   }
 }, {collection: 'table_orders'})
 

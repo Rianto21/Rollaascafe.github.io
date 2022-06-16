@@ -24,8 +24,8 @@ const ProductSchema = mongoose.Schema({
   rating_product: {
     type: Object,
     default: {
-      "rata-rata": 0,
-      "daftar-rating": []
+      "rata_rata": 0,
+      "daftar_rating": []
     },
     required: true
   },

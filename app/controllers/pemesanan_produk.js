@@ -1,6 +1,7 @@
 import { productOrderSchema } from '../models/product_orders.js'
 import { userSchema } from '../models/users.js'
 import { pembayaranSchema } from '../models/pembayaran.js'
+import { keuanganSchema } from '../models/keuangan.js'
 
 export const addProductOrders = async (req, res) => {
   
@@ -84,11 +85,10 @@ export const checkoutOrder = async (req, res) => {
     })
 
     await payment.save()
+
     const product_order = await productOrderSchema.updateOne({_id: pemesanan_produk_id}, {
       $set: { 'pembayaran.kode_pembayaran': payment._id }
     });
-    
-
 
     res.json({
       status: true,

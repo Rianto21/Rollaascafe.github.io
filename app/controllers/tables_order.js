@@ -1,5 +1,6 @@
-import { ordertableSchema } from "../models/tables_order";
-import { userSchema } from "../models/users";
+import { ordertableSchema } from "../models/tables_order.js";
+import { userSchema } from "../models/users.js";
+import { tableSchema } from "../models/tables.js";
 
 export const getTablesOrders = async (req, res) => {
   try {
@@ -27,7 +28,11 @@ export const addOrderTable = async (req, res) => {
       nama_pemesan: req.body.nama_pemesan,
       jumlah_orang: req.body.jumlah_orang,
       daftar_meja: req.body.daftar_meja,
-      tanggal_pemesanan: req.body.tanggal_pemesanan
+      tanggal_pemesanan: new Date()
+    })
+
+    const updateTable = await tableSchema.updateMany({_id: {$in: req.body.daftar_meja}}, {
+      $set: {status: false}
     })
 
     const userOrderTable = await userSchema.updateOne({_id: req.body.user_id}, {

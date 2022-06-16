@@ -1,11 +1,11 @@
 import express from 'express';
 
-import {addBuktiPembayaran} from '../controllers/pembayaran.js'
+import {addBuktiPembayaran, getPayment} from '../controllers/pembayaran.js'
 
 const router = express.Router();
 
 //pembayaran_id, urlfoto
 router.post('/', addBuktiPembayaran);
-
+router.get('/:id', getPayment )
 
 export default router
