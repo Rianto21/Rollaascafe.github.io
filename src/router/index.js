@@ -120,6 +120,13 @@ const routes = [
   
     component: () =>
       import("../views/EditProduct.vue"),
+  },
+  {
+    path: "/profile/edit/:id",
+    name: "EditProfile",
+  
+    component: () =>
+      import("../views/EditDataDiri.vue"),
   }
 ];
 

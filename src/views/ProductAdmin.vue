@@ -10,7 +10,7 @@
                 <h1 class="text-3xl font-bold">Daftar Product</h1>
                 <router-link to="/dashboard/product/tambah" class="bg-green-700 text-white py-3 px-4 rounded-md"><i class="bi bi-plus-circle mr-1"></i> Tambah Product</router-link>
             </div>
-            <div class="flex gap-32 md:justify-center flex-wrap justify-center w-full">
+            <div class="flex gap-20 md:justify-center flex-wrap justify-center w-full">
                 <CardProduct :product="product" :edit="true" v-for="product in products" :key="product.id" />
             </div>
         </div>

@@ -17,6 +17,8 @@
         </div>
       </div>
     </div>
+    <img :src="previewimage" alt="gambar">
+    <input type="file" name="fotoproduct" id="fotoproduct" @change="uploadgambar">
   </div>
 
 </template>
@@ -24,11 +26,26 @@
 <script>
 
 import Navbar from '@/components/Navbar.vue';
+import { saveAs } from 'file-saver';
 
 export default {
   name: 'About',
   components: {
     Navbar,
+  },
+  data() {
+    return {
+      previewimage: "https://drive.google.com/uc?export=view&id=1xUmdedtXw3YhFgyMQbUsqUjhzcNYI3ww"
+    }
+  },
+  methods: {
+    uploadgambar(event) {
+      // console.log(event.target.files[0])
+      this.previewimage = URL.createObjectURL(event.target.files[0])
+      console.log(URL.createObjectURL(event.target.files[0]))
+      saveAs(URL.createObjectURL(event.target.files[0]), "image.png");
+
+    }
   }
 }
 </script>

@@ -87,7 +87,6 @@ export default {
         }
     },
     methods: {
-
         setProduct(data) {
           this.products = data
           this.session = sessionStorage.getItem("login")

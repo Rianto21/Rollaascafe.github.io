@@ -20,8 +20,8 @@
                 <p class="font-poppins text-xs text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic fuga quidem officia assumenda.</p>
             </div>
         </router-link>
-        <router-link :to="'/dashboard/product/edit/'+product._id" class="absolute top-2 right-2 text-xl" v-if="edit">
-            <i class="bi bi-pencil-square"></i>
+        <router-link :to="'/dashboard/product/edit/'+product._id" class="absolute top-4 right-4 text-xl" v-if="edit">
+            <i class="bi bi-pencil-square text-white"></i>
         </router-link>
     </div>
 </template>

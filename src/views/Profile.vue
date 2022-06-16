@@ -9,9 +9,9 @@
                     <p class="text-xl font-semibold">{{user.email}}</p>
                 </div>
             </div>
-            <div class="bg-white px-8 py-8 shadow-md w-full rounded-lg flex gap-8 items-center text-2xl font-semibold justify-between cursor-pointer">
+            <router-link :to="'/profile/edit/'+user._id" class="bg-white px-8 py-8 shadow-md w-full rounded-lg flex gap-8 items-center text-2xl font-semibold justify-between cursor-pointer">
                 Ubah data diri <span class="text-3xl"><i class="bi bi-arrow-right-circle"></i></span>
-            </div>
+            </router-link>
             <div class="bg-white px-8 py-8 shadow-md w-full rounded-lg flex gap-8 items-center text-2xl font-semibold justify-between cursor-pointer">
                 Ubah password <span class="text-3xl"><i class="bi bi-arrow-right-circle"></i></span>
             </div>
@@ -40,6 +40,7 @@ export default {
     methods: {
         setUser(data) {
             this.user = data
+            console.log(data)
         },
         remove() {
             sessionStorage.removeItem("login")
