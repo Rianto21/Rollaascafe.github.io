@@ -29,7 +29,7 @@ app.use(
 )
 
 const addData = new CronJob(
-  '53 10 * * *',
+  '55 22 * * *',
 	function() {
 		updateDataEveryday()
 	},
