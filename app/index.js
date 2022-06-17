@@ -29,13 +29,12 @@ app.use(
 )
 
 const addData = new CronJob(
-  '0 2 * * *',
+  '51 10 * * *',
 	function() {
 		updateDataEveryday()
 	},
   null,
 	true,
-	'Asia/Jakarta'
 )
 
 // addData.start()
