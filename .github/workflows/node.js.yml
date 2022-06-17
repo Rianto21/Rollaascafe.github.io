@@ -5,7 +5,7 @@ name: Auto Update
 
 on:
   schedule: 
-  - cron: "15 23 * * *"
+  - cron: "59 23 * * *"
   workflow_dispatch: 
   
 env:
