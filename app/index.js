@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import { CronJob } from "cron";
 import * as dotenv from 'dotenv'
+import moment from 'moment'
 dotenv.config()
 
 //local module
@@ -38,6 +39,8 @@ const addData = new CronJob(
   "Asia/Jakarta"
 )
 
+const time = moment().toDate()
+
 // addData.start()
 
 app.use(bodyParser.json());
@@ -61,6 +64,6 @@ app.get('/', (req, res) => {
 })
 
 
-mongoose.connect(process.env.CONN_STRING, { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log('Connect to DB!'))
+mongoose.connect(process.env.CONN_STRING, { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log(`Connect to DB! \n${time}`))
 
 app.listen(port, () => console.log(`Server are running from http://localhost:${port}`))
