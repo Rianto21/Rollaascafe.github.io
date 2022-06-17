@@ -50,7 +50,7 @@ export const addOrderTable = async (req, res) => {
 
 export const updateOrderTable = async (req, res) => {
   try {
-    {nama_pemesan, jumlah_orang, daftar_meja, tanggal_pemesanan} req.body
+  const {nama_pemesan, jumlah_orang, daftar_meja, tanggal_pemesanan} = req.body
 
   const updateorderTable = await ordertableSchema.updateOne({_id: req.params.id}, {
     $set: {

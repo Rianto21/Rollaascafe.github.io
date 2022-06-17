@@ -18,9 +18,6 @@ const PembayaranSchema = mongoose.Schema({
   kota: {
     type: String
   },
-  kecamatan: {
-    type: String
-  },
   alamat: {
     type: String
   },

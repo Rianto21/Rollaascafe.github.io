@@ -14,9 +14,6 @@ const Product_order_Schema = mongoose.Schema({
   },
   pembayaran: {
     type: Object
-  },
-  lokasi_pengiriman: {
-    type: String
   }
 }, {collection: 'product_orders'})
 

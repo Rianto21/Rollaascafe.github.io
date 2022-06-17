@@ -2,6 +2,9 @@ import bodyParser from "body-parser";
 import express from "express";
 import mongoose from 'mongoose';
 import cors from 'cors';
+import { CronJob } from "cron";
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 //local module
 import usersRoute from './routes/users.js';
@@ -10,6 +13,8 @@ import tablesRoute from './routes/tables.js'
 import prorductOrderRoute from './routes/pemesanan_produk.js'
 import paymentRoute from './routes/pembayaran.js'
 import tablesOrderRoute from './routes/order_tables.js'
+
+import { updateDataEveryday } from "./controllers/pemesanan_produk.js";
 
 const app = express();
 let port = process.env.PORT || 8000;
@@ -22,6 +27,18 @@ app.use(
     credentials: true
   })
 )
+
+const addData = new CronJob(
+  '0 2 * * *',
+	function() {
+		updateDataEveryday()
+	},
+  null,
+	true,
+	'Asia/Jakarta'
+)
+
+// addData.start()
 
 app.use(bodyParser.json());
 
@@ -44,6 +61,6 @@ app.get('/', (req, res) => {
 })
 
 
-mongoose.connect('mongodb+srv://Oryto21:M1475963@cluster0.ar1x3.mongodb.net/rollaascafe', { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log('Connect to DB!'))
+mongoose.connect(process.env.CONN_STRING, { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log('Connect to DB!'))
 
 app.listen(port, () => console.log(`Server are running from http://localhost:${port}`))

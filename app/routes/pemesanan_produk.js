@@ -1,6 +1,7 @@
 import express from 'express';
+import cron, { CronJob }  from 'cron';
 
-import {getProductOrders, addProductOrders, checkoutOrder, getAcceptedOrders, getNotAcceptedOrders, acceptPay, getCatatanPemasukan} from '../controllers/pemesanan_produk.js'
+import {updateDataEveryday, getProductOrders, addProductOrders, checkoutOrder, getAcceptedOrders, getNotAcceptedOrders, acceptPay, getCatatanPemasukan, getbydate, sendMail} from '../controllers/pemesanan_produk.js'
 
 const router = express.Router();
 
@@ -18,5 +19,11 @@ router.get('/not-accepted', getNotAcceptedOrders)
 router.post('/accept-payment', acceptPay)
 
 router.get('/berhasil', getCatatanPemasukan)
+
+router.get('/updatemanual', updateDataEveryday)
+
+router.get('/getmoneytoday', getbydate)
+
+router.get('/sendmailer', sendMail)
 
 export default router
