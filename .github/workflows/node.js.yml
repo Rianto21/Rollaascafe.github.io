@@ -5,7 +5,7 @@ name: Auto Update
 
 on:
   schedule: 
-  - cron: "59 23 * * *"
+  - cron: "00 19 * * *"
   workflow_dispatch: 
   
 env:
@@ -33,4 +33,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: node app/index.js
+    - run: node app/update.js
