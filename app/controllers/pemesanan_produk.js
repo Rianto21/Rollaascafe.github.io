@@ -270,8 +270,9 @@ export const updateDataEveryday = async (req, res) => {
       tanggal: today.toDate(),
       pemasukan: 0
     })
-    res.json(addKeuangan)
+    console.log(addKeuangan)
+    process.exit()
   } catch (error) {
-    res.json(error)
+    console.log(error)
   }
 }
