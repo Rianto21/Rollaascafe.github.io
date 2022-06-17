@@ -5,7 +5,7 @@ name: Auto Update
 
 on:
   schedule: 
-  - cron: "0 19 * * *"
+  - cron: "59 18 * * *"
   workflow_dispatch: 
   
 env:
@@ -18,10 +18,11 @@ jobs:
   report:
 
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [16.x]
 
     steps:
     - uses: actions/checkout@v3
