@@ -32,4 +32,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm app/index.js
+    - run: node app/index.js
