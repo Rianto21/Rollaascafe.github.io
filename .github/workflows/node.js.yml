@@ -1,0 +1,36 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Auto Update 
+
+on:
+  schedule: 
+  - cron: "59 18 * * *"
+  workflow_dispatch: 
+  
+env:
+  CONN_STRING: ${{ secrets.CONN_STRING }}
+  SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+  SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
+  RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }} 
+
+jobs:
+  report:
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: node app/index.js
