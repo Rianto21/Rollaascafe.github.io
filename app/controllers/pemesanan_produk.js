@@ -264,7 +264,7 @@ export const updateDataEveryday = async (req, res) => {
   // console.log("hellooooo")
   try {
     // moment.tz.setDefault("Asia/Jakarta")
-    const today = moment().add(1, 'days').startOf('day').subtract(16, 'h');
+    const today = moment().add(1, 'days').startOf('day');
     console.log(`${today.toDate()}`)
     const addKeuangan = await keuanganSchema.create({
       tanggal: today.toDate(),

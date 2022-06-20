@@ -27,7 +27,9 @@ export const addOrderTable = async (req, res) => {
     const ordertable = await new ordertableSchema({
       nama_pemesan: req.body.nama_pemesan,
       jumlah_orang: req.body.jumlah_orang,
-      daftar_meja: req.body.daftar_meja,
+      meja_id: req.body.meja_id,
+      start_time: req.body.start_time,
+      end_time: req.body.end_time,
       tanggal_pemesanan: new Date()
     })
 
@@ -48,19 +50,53 @@ export const addOrderTable = async (req, res) => {
   }
 }
 
+export const checkAvailable = async (req,res) => {
+  try {
+    const {meja_id, start_time, end_time} = req.body;
+    const check = await ordertableSchema.findOne({meja_id: meja_id, $or: [{start_time: {$gte: start_time, $lt: end_time }}, {end_time: {$gt: start_time, $lte: end_time}}]})
+    console.log(check);
+    if(check === null){
+      res.json({
+        status: true,
+        available: true,
+        data: check
+      })
+    }else {
+      res.json({
+        status: true,
+        available: false,
+        data: check
+      })
+    }
+  } catch (error) {
+    res.json(error)
+  }
+
+}
+
 export const updateOrderTable = async (req, res) => {
   try {
-  const {nama_pemesan, jumlah_orang, daftar_meja, tanggal_pemesanan} = req.body
+  const {tables_order_id, start_time, end_time} = req.body
 
-  const updateorderTable = await ordertableSchema.updateOne({_id: req.params.id}, {
+  const updateorderTable = await ordertableSchema.updateOne({tables_order_id}, {
     $set: {
-      nama_pemesan: nama_pemesan,
-      jumlah_orang: jumlah_orang,
-      daftar_meja: daftar_meja,
-      tanggal_pemesanan: tanggal_pemesanan
+      start_time: start_time,
+      end_time: end_time
     }
   })
   res.json(updateorderTable)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+export const deleteTablesOrder = async (req, res) => {
+  try {
+    const deletedOrder = await ordertableSchema.findByIdAndDelete(req.params.id)
+    res.json({
+      message: "Data Deleted",
+      data: deletedOrder
+    })
   } catch (error) {
     res.json(error)
   }

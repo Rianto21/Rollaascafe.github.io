@@ -7,8 +7,14 @@ const OrderTableSchema = mongoose.Schema({
   jumlah_orang: {
     type: Number
   },
-  daftar_meja: {
-    type:  [mongoose.Schema.Types.ObjectId]
+  meja_id: {
+    type:  mongoose.Schema.Types.ObjectId
+  },
+  start_time: {
+    type: Date
+  },
+  end_time: {
+    type: Date
   },
   tanggal_pemesanan: {
     type: Date
